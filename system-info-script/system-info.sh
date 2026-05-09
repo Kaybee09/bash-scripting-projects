@@ -1,17 +1,35 @@
 #!/bin/bash
 
-TARGET="${1:-$HOME}"
-user=whoami
-up=uptime
-ram=free -h
-disk= df -h 
-host=hostname
-for user in "$TARGET"
-	do
-		echo "welcome $user" 
-		echo "you are using  host $host"
-	       echo "Currently you have been up since $up"
-               echo "for your information, here is your RAM and disk usage"
-	       echo "$ram && $disk"
-       done
-              	       
+host=$(hostname)
+user=$(whoami)
+uptime_info=$(uptime)
+ram_usage=$(free -h)
+disk_usage=$(df -h)
+cpu_load=$(uptime | awk -F'load average:' '{print $2}')
+logged_users=$(who)
+
+echo "System Information"
+echo "------------------"
+
+echo "Hostname: $host"
+echo "User: $user"
+
+echo
+echo "Uptime:"
+echo "$uptime_info"
+
+echo
+echo "CPU Load:"
+echo "$cpu_load"
+
+echo
+echo "RAM Usage:"
+echo "$ram_usage"
+
+echo
+echo "Disk Usage:"
+echo "$disk_usage"
+
+echo
+echo "Logged In Users:"
+echo "$logged_users"
