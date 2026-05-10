@@ -9,6 +9,7 @@ A Bash script that displays basic Linux system information.
 - Current user
 - Memory usage
 - Disk usage
+- CPU info 
 
 ## Tools Used
 - Bash
