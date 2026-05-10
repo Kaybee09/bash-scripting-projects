@@ -7,6 +7,7 @@ ram_usage=$(free -h)
 disk_usage=$(df -h)
 cpu_load=$(uptime | awk -F'load average:' '{print $2}')
 logged_users=$(who)
+cpu=$(lscpu)
 
 echo "SYSTEM INFORMATION"
 echo "------------------"
@@ -42,3 +43,8 @@ echo "$disk_usage"
 echo
 echo "Logged In Users:"
 echo "$logged_users"
+
+echo
+echo "CPU INFORMATION"
+echo "---------------"
+echo "$lscpu"
