@@ -7,7 +7,7 @@ ram_usage=$(free -h)
 disk_usage=$(df / | awk 'NR==2 {print $5}' | sed 's/%//')
 load=$(uptime | awk -F'load average:' '{print $2}' | cut -d',' -f1)
 logged_users=$(who)
-cpu=$(lscpu | sed -n "1p;2p;5p;7p;8p;9p;10p")
+cpu=$(lscpu | grep -Ei "model name|architech|cpu\(s\)")
 
 echo "SYSTEM INFORMATION"
 echo "------------------"
