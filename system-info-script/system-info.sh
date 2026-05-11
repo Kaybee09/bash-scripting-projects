@@ -4,8 +4,8 @@ host=$(hostname)
 user=$(whoami)
 uptime_info=$(uptime)
 ram_usage=$(free -h)
-disk_usage=$(df -h)
-cpu_load=$(uptime | awk -F'load average:' '{print $2}')
+disk_usage=$(df / | awk 'NR==2 {print $5}')
+load=$(uptime | awk -F'load average:' '{print $2}' | cut -d',' -f1)
 logged_users=$(who)
 cpu=$(lscpu | sed -n "1p;2p;5p;7p;8p;9p;10p")
 
@@ -21,12 +21,12 @@ echo "Uptime:"
 echo "$uptime_info"
 
 echo
-echo "MEMORY INFORMATION"
+echo "Uptime INFORMATION"
 echo "------------------"
 
 echo
-echo "CPU Load:"
-echo "$cpu_load"
+echo "Load Time:"
+echo "load time(1min):$load"
 
 echo
 echo "RAM Usage:"
