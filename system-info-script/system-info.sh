@@ -26,7 +26,7 @@ echo "------------------"
 
 echo
 echo "Load Time:"
-echo "load time(1min):$load"
+echo "load (1min):$load"
 
 echo
 echo "RAM Usage:"
@@ -39,6 +39,11 @@ echo "-----------------"
 echo
 echo "Disk Usage:"
 echo "$disk_usage"
+if [ "$disk_usage" -gt 80 ]; then 
+	echo "WARNING: Disk is very high!"
+else
+	echo "The disk looks normal see above number."
+fi
 
 echo
 echo "Logged In Users:"
