@@ -15,8 +15,12 @@ do
 	echo "Disk Usage $disk"
 	echo "======================"
 	echo
-	echo "STATUS OK"
+	
 	sleep 5 
 done
 
-
+if [ $disk -gt 50 ]; then
+	echo "WARNING‼️ ⛔️ disk is high"
+else 
+	echo "STATUS OK"
+fi
