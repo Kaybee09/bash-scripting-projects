@@ -2,7 +2,7 @@
 
 cpu_load=$(uptime | cut -d':' -f5)
 memory=$(free -h | awk 'NR==2 {print $3 "/" $2}')
-disk=$(df / | awk 'NR==2 {print $5}' | sed 's/%//' )
+disk=$(df / | awk 'NR==2 {print $5}' | sed 's/%//')
 
 while true
 do
@@ -15,17 +15,11 @@ do
 	echo "Disk Usage $disk"
 	echo "======================"
 	echo
-	if [ $disk -gt 50 ]; then
+	if [ $disk -gt 80 ]; then
         echo "WARNING‼️ ⛔️ disk is high"
 else
         echo "STATUS OK"
 fi
 	
 	sleep 5 
-done
-
-if [ $disk -gt 50 ]; then
-	echo "WARNING‼️ ⛔️ disk is high"
-else 
-	echo "STATUS OK"
-fi
+done >> system_health.log
