@@ -4,7 +4,6 @@
 server=$(hostname)
 os_info=$(cat /etc/os-release | grep -i "24")
 cpu_load=$(top -bn1 | grep "Cpu(s)" | awk '{print $2 + $4}')
-trap 'echo "Ctrl+C detected!"' SIGINT
 
 echo "[INFO]"
 echo "=================="
@@ -24,7 +23,8 @@ elif [ "$cpu_load" -ge 50 ]; then
 else
 	echo "Monitoring CPU, Please wait...."
 	sleep 5
-	echo "Cpu load is normal"
+	echo "CPU STATUS IS OK"
+	echo "Monitoring stopped"
 fi
 
 
