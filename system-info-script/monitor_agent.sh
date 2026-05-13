@@ -11,7 +11,7 @@ do
 	echo
 	echo "$(date)"
 	echo
-	echo "Cpu-load: $cpu_load"
+	echo "Cpu load: $cpu_load"
 	echo "Memory usage $memory"
 	echo "Disk Usage $disk"
 	echo "======================"
