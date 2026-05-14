@@ -19,6 +19,8 @@ while true; do
     . /etc/os-release
     os_info=$PRETTY_NAME
     df -h / | awk 'NR==2 {print $5}' | sed 's/%//'
+    free -m |awk  'NR==2 {print $4}'
+    awk '{print $1}' /proc/loadavg
 
     cpu_load=$(awk '{print $1}' /proc/loadavg)
 
