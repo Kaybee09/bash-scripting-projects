@@ -18,11 +18,12 @@ while true; do
 
     . /etc/os-release
     os_info=$PRETTY_NAME
-    df -h / | awk 'NR==2 {print $5}' | sed 's/%//'
-    free -m |awk  'NR==2 {print $4}'
-    awk '{print $1}' /proc/loadavg
-
+    disk=$(df -h / | awk 'NR==2 {print $5}' | sed 's/%//')
+    ram_available=$(free -m |awk  'NR==2 {print $4}')
     cpu_load=$(awk '{print $1}' /proc/loadavg)
+
+
+
 
     echo "[INFO]"
     echo "=================="
@@ -32,15 +33,23 @@ while true; do
     echo
     echo "CPU STATUS"
     echo "================="
+    echo 
+    echo "SYSTEM SEVERITY SCORING"
+
 
     echo "Load Average (1 min): $cpu_load"
+    echo "Ram availability to use: $ram_available"
+    echo "Disk usage: $disk"
 
-    if (( $(echo "$cpu_load > 2.0" | bc -l) )); then
-        echo "CRITICAL: Very High Load"
-    elif (( $(echo "$cpu_load > 1.0" | bc -l) )); then
-        echo "WARNING: High Load"
+   
+
+    if (( $(echo "$cpu_load > 1.0" | bc -l) && "$disk > 60" && "$ram_available > 1100"  )); then
+        echo "Range 1 to 100: System is 99, THIS IS CRITICAL."
+
+    elif (( $(echo "$cpu_load == 1.0" | bc -l) && "$disk <= 60" && "$ram_available <= 1100"  )); then
+	    echo "Range 1-100: system is 70 WARNING" 
     else
-        echo "CPU STATUS IS OK"
+        echo "SYSTEM STATUS IS OK"
     fi
 
     sleep 2
