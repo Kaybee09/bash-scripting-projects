@@ -3,7 +3,7 @@
 cleanup() {
     echo
     echo "=================="
-    echo "Exiting monitoring script safely..."
+    echo "Exiting monitoring script ..."
     echo "Goodbye!"
     exit 0
 }
