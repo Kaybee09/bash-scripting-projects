@@ -37,4 +37,9 @@ evaluate_metric() {
     else
         log_message "INFO" "$metric" "$value%" "HEALTHY"
     fi
-    
+}
+
+shutdown() {
+    echo "$(date +"%Y-%m-%d %H:%M:%S") | hostname=$HOSTNAME | level=INFO | message=Graceful shutdown triggered"
+    RUNNING=false
+}
