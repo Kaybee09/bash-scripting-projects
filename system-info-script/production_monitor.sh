@@ -1,3 +1,5 @@
+#!/bin/bash
+
 HOSTNAME=$(hostname)
 INTERVAL=10
 RUNNING=true
@@ -43,3 +45,21 @@ shutdown() {
     echo "$(date +"%Y-%m-%d %H:%M:%S") | hostname=$HOSTNAME | level=INFO | message=Graceful shutdown triggered"
     RUNNING=false
 }
+
+trap shutdown SIGINT SIGTERM
+
+echo "$(date +"%Y-%m-%d %H:%M:%S") | hostname=$HOSTNAME | level=INFO | message=Production monitor started"
+
+while [ "$RUNNING" = true ]; do
+    CPU_LOAD=$(get_cpu_load)
+    MEMORY_USAGE=$(get_memory_usage)
+    DISK_USAGE=$(get_disk_usage)
+
+    evaluate_metric "cpu_load" "$CPU_LOAD"
+    evaluate_metric "memory_usage" "$MEMORY_USAGE"
+    evaluate_metric "disk_usage" "$DISK_USAGE"
+
+    sleep "$INTERVAL"
+done
+
+echo "$(date +"%Y-%m-%d %H:%M:%S") | hostname=$HOSTNAME | level=INFO | message=Production monitor stopped"
