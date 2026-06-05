@@ -13,3 +13,22 @@ if [[ -z "$LOGGED_USERS" ]]; then
     LOGGED_USERS="No logged-in users found"
 fi
 
+echo "===================================="
+echo " Linux Monitor Agent - Snapshot"
+echo "===================================="
+echo "Hostname:        $HOSTNAME"
+echo "Current User:    $CURRENT_USER"
+echo "Uptime:          $UPTIME_INFO"
+echo "CPU Load Avg:    $LOAD_AVG"
+echo
+
+echo "RAM Usage:"
+free -h
+
+echo
+echo "Disk Usage:"
+df -h --total | grep -E 'Filesystem|total'
+
+echo
+echo "Logged-in Users:"
+echo "$LOGGED_USERS"
