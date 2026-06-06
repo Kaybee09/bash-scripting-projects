@@ -27,3 +27,4 @@ get_cpu_load() {
 write_log() {
     echo "$1" >> "$LOG_FILE"
 }
+
