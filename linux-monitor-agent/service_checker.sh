@@ -1,11 +1,10 @@
 #!/bin/bash
 
 LOG_FILE="service_status.log"
-SERVICES=("ssh" "docker" "nginx")
 
 echo "Service Check - $(date)" >> "$LOG_FILE"
 
-for service in "${SERVICES[@]}"
+for service in "$@"
 do
     if systemctl is-active --quiet "$service"; then
         echo "$service is running"
