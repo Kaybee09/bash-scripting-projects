@@ -1,0 +1,4 @@
+Service Check - Wed Jun 24 07:39:46 CEST 2026
+Wed Jun 24 07:39:46 CEST 2026 - FAILED - ssh is not running
+Wed Jun 24 07:39:46 CEST 2026 - FAILED - docker is not running
+Wed Jun 24 07:39:46 CEST 2026 - FAILED - nginx is not running
