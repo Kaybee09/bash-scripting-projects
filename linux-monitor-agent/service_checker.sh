@@ -17,6 +17,8 @@ do
         echo "$message" >> "$LOG_FILE"
     else
         echo "$service is not running"
-        echo "$(date) - FAILED - $service is not running" >> "$LOG_FILE"
+        message="$(date) - FAILED - $service is not running"
+        echo "$message"
+        echo "$message" >> "$LOG_FILE"
     fi
 done
